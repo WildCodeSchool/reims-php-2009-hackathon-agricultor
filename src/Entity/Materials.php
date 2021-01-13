@@ -22,27 +22,27 @@ class Materials
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $Type;
+    private ?string $type;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $Trademark;
+    private ?string $trademark;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $Model;
+    private ?string $model;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private ?int $Year;
+    private ?int $year;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private ?int $Kilometers;
+    private ?int $kilometer;
 
     /**
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="materials")
@@ -61,60 +61,60 @@ class Materials
 
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(string $Type): self
+    public function setType(string $type): self
     {
-        $this->Type = $Type;
+        $this->type = $type;
 
         return $this;
     }
 
     public function getTrademark(): ?string
     {
-        return $this->Trademark;
+        return $this->trademark;
     }
 
-    public function setTrademark(string $Trademark): self
+    public function setTrademark(string $trademark): self
     {
-        $this->Trademark = $Trademark;
+        $this->trademark = $trademark;
 
         return $this;
     }
 
     public function getModel(): ?string
     {
-        return $this->Model;
+        return $this->model;
     }
 
-    public function setModel(string $Model): self
+    public function setModel(string $model): self
     {
-        $this->Model = $Model;
+        $this->model = $model;
 
         return $this;
     }
 
     public function getYear(): ?int
     {
-        return $this->Year;
+        return $this->year;
     }
 
-    public function setYear(int $Year): self
+    public function setYear(int $year): self
     {
-        $this->Year = $Year;
+        $this->year = $year;
 
         return $this;
     }
 
-    public function getKilometers(): ?int
+    public function getKilometer(): ?int
     {
-        return $this->Kilometers;
+        return $this->kilometer;
     }
 
-    public function setKilometers(int $Kilometers): self
+    public function setKilometer(int $kilometer): self
     {
-        $this->Kilometers = $Kilometers;
+        $this->kilometer = $kilometer;
 
         return $this;
     }
