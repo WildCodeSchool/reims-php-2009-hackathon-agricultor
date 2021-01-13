@@ -43,6 +43,11 @@ class User implements UserInterface
      */
     private ?string $pseudo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Materials::class, inversedBy="Owner")
+     */
+    private ?Materials $materials;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -133,6 +138,18 @@ class User implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getMaterials(): ?Materials
+    {
+        return $this->materials;
+    }
+
+    public function setMaterials(?Materials $materials): self
+    {
+        $this->materials = $materials;
 
         return $this;
     }
