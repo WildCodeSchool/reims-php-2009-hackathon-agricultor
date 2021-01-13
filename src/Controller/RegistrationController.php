@@ -39,8 +39,9 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        if ($this->isGranted('ROLE_USER') == true)
+        if ($this->isGranted('ROLE_USER') == true) {
             return $this->redirectToRoute('home');
+        }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
