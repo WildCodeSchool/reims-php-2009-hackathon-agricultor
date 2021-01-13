@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -41,6 +42,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50)
      */
     private ?string $pseudo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Materials::class, inversedBy="Owner")
+     */
+    private ?Materials $materials;
 
     public function getId(): ?int
     {
@@ -132,6 +138,18 @@ class User implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getMaterials(): ?Materials
+    {
+        return $this->materials;
+    }
+
+    public function setMaterials(?Materials $materials): self
+    {
+        $this->materials = $materials;
 
         return $this;
     }
