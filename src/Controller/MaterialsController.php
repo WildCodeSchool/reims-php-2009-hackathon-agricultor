@@ -83,7 +83,7 @@ class MaterialsController extends AbstractController
      */
     public function delete(Request $request, Materials $material): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$material->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $material->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($material);
             $entityManager->flush();
