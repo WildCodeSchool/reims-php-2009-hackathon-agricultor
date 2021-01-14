@@ -22,12 +22,11 @@ class SearchMaterialController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $type = $materials->getType();
-            $trademark = $materials->getTrademark();
-            $model = $materials->getModel();
+            $type = $materials->getType() ?? '';
+            $trademark = $materials->getTrademark() ?? '';
+            $model = $materials->getModel() ?? '';
             $year = $materials->getYear();
-            $kilometer = $materials->getKilometer();
-            $materials = $materialsRepository->search($type, $trademark, $model, $year, $kilometer);
+            $materials = $materialsRepository->search($type, $trademark, $model, $year);
         }
         return $this->render('search_material/index.html.twig', [
             'form' => $form->createView(),
