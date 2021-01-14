@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
+        <link rel="stylesheet" href="build/normalize.css">
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
