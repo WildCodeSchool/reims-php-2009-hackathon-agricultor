@@ -19,7 +19,10 @@ class MaterialsRepository extends ServiceEntityRepository
         parent::__construct($registry, Materials::class);
     }
 
-    public function search($type, $trademark, $model, $year, $kilometer): array
+    /**
+     * @return Materials[]
+    */
+    public function search(string $type, string $trademark, string $model, int $year): array
     {
         $query = $this
             ->createQueryBuilder('m')
