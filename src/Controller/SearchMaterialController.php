@@ -25,7 +25,7 @@ class SearchMaterialController extends AbstractController
             $type = $materials->getType() ?? '';
             $trademark = $materials->getTrademark() ?? '';
             $model = $materials->getModel() ?? '';
-            $year = $materials->getYear();
+            $year = $materials->getYear() ?? null;
             $materials = $materialsRepository->search($type, $trademark, $model, $year);
         }
         return $this->render('search_material/index.html.twig', [
