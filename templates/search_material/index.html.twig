@@ -8,14 +8,17 @@
         {{ form_widget(form) }}
             <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-
+    <div class="calcul">
     {% for material in materials %}
-        {{material.type}}
-        {{material.trademark}}
-        {{material.model}}
-        {{material.year}}
+        {{material.type}} <br>
+        {{material.trademark}}<br>
+        {{material.model}}<br>
+        {{material.year}}<br>
     {% endfor %}   
+    
+    <strong>{{calculPoints}} points</strong>
+    </div>
+    <img class="robot2" src="/build/images/robot.647805f5.png" alt="Robot" title="Robot" />
 
-    {{calculPoints}} points
 
 {% endblock %}

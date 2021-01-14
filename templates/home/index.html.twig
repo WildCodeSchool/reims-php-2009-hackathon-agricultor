@@ -10,4 +10,11 @@
     <a class="materiel" href="{{path ('search_material') }}">Evaluez votre matériel</a>
     <a class="register" href="{{path ('app_register') }}">Pas encore inscrit? Cliquez ici.</a>
 </div>
+{% if app.user %}
+        {{ app.user.email }}
+            <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Se connecter</a>
+    {% endif %}
+
 {% endblock %}
