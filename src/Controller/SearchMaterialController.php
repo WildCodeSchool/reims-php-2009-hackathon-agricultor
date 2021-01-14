@@ -32,7 +32,7 @@ class SearchMaterialController extends AbstractController
             $trademark = $materials->getTrademark() ?? '';
             $model = $materials->getModel() ?? '';
             $year = $materials->getYear();
-            $km = intval($_POST['search_material']['kilometer']);
+            $km = $materials->getKilometer();
 
             $materials = $materialsRepository->search($type, $trademark, $model, $year);
 
