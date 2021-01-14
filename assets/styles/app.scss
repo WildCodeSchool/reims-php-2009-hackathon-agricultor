@@ -11,7 +11,7 @@ body {
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 6rem;
     margin: 2rem auto;
     text-align: center;
 }
@@ -22,7 +22,9 @@ body {
 }
 
 .logo img {
-    width: 40%;
+    width: 60%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
 a {
@@ -35,7 +37,7 @@ a {
     text-decoration: none;
     width: 80%;
     margin: 0 auto 2rem auto;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 h1 {
@@ -43,7 +45,7 @@ h1 {
     display: grid;
     justify-content: center;
     font-family: Montserrat Bold;
-    font-size: 3rem;
+    font-size: 5rem;
 }
 
 form {
@@ -62,7 +64,7 @@ form > div {
 label {
     padding: 0;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 input {
@@ -90,4 +92,28 @@ button {
 
 li {
     font-size: 2rem;
+}
+
+// materials search
+select {
+    background-color: #1f2833;
+    color: white;
+    border: none;
+    height: 100px;
+    width: 400px;
+    margin: 25px;
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+select option{
+    font-size: 15px;
+}
+
+#search_material > div{
+    color: white;
+    display: grid;
+    justify-content: center;
+    margin-bottom: 2.5%;
+    row-gap: 1rem;
 }
