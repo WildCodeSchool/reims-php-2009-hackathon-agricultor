@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Materials;
 use App\Form\SearchMaterialType;
 use App\Repository\MaterialsRepository;
+use App\Service\CalculService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,8 +16,13 @@ class SearchMaterialController extends AbstractController
     /**
      * @Route("/search/material", name="search_material")
      */
-    public function search(Request $request, MaterialsRepository $materialsRepository): Response
-    {
+    public function search(
+        Request $request,
+        MaterialsRepository $materialsRepository,
+        CalculService $calculService
+    ): Response {
+
+        $calculPoints = 0;
         $materials = new Materials();
         $form = $this->createForm(SearchMaterialType::class, $materials);
         $form->handleRequest($request);
@@ -26,11 +32,19 @@ class SearchMaterialController extends AbstractController
             $trademark = $materials->getTrademark() ?? '';
             $model = $materials->getModel() ?? '';
             $year = $materials->getYear();
+            $km = $materials->getKilometer();
+
             $materials = $materialsRepository->search($type, $trademark, $model, $year);
+
+            $calculPointsByYear = $calculService->calculPointsByYear($year);
+            $calculPointsByKm = $calculService->calculPointsByKm($km);
+            $calculPoints = $calculPointsByKm + $calculPointsByYear;
         }
+
         return $this->render('search_material/index.html.twig', [
             'form' => $form->createView(),
             'materials' => $materials,
+            'calculPoints' => $calculPoints,
         ]);
     }
 }
