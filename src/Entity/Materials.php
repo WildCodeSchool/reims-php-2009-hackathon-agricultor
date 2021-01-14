@@ -45,14 +45,11 @@ class Materials
     private ?int $kilometer;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="materials")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="materials")
      */
-    private Collection $Owner;
+    private ?User $owner;
 
-    public function __construct()
-    {
-        $this->Owner = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -119,32 +116,14 @@ class Materials
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getOwner(): Collection
+    public function getOwner(): ?User
     {
-        return $this->Owner;
+        return $this->owner;
     }
 
-    public function addOwner(User $owner): self
+    public function setOwner(?User $owner): self
     {
-        if (!$this->Owner->contains($owner)) {
-            $this->Owner[] = $owner;
-            $owner->setMaterials($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOwner(User $owner): self
-    {
-        if ($this->Owner->removeElement($owner)) {
-            // set the owning side to null (unless already changed)
-            if ($owner->getMaterials() === $this) {
-                $owner->setMaterials(null);
-            }
-        }
+        $this->owner = $owner;
 
         return $this;
     }
