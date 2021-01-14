@@ -8,13 +8,13 @@
     <p class="title"><strong>Agri</strong>Cultor</p>
     <div class="logo"><img src="/build/images/robot.647805f5.png" alt="Robot" title="Robot" /></div>
     <a class="materiel" href="{{path ('search_material') }}">Evaluez votre matériel</a>
-    <a class="register" href="{{path ('app_register') }}">Pas encore inscrit? Cliquez ici.</a>
 </div>
 {% if app.user %}
-        {{ app.user.email }}
+        <p class="mail">{{ app.user.email }}</p>
             <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {% else %}
         <a href="{{ path('app_login') }}">Se connecter</a>
     {% endif %}
+    <a class="register" href="{{path ('app_register') }}">Pas encore inscrit? Cliquez ici.</a>
 
 {% endblock %}
