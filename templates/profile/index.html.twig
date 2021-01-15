@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <p>{{app.user.pseudo}}<p>
+        <a class="materiel" href="{{path ('materials_new') }}">Ajouter un nouveau matériel</a>
+        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+{% endblock %}

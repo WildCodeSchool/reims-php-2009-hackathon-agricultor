@@ -38,22 +38,15 @@ class MaterialsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $materials->setOwner($this->getUser());
-            $calculPointsByYear = $calculService->calculPointsByYear($materials->getYear());
-            $calculPointsByKm = $calculService->calculPointsByKm($materials->getKilometer());
-            $calculPoints = $calculPointsByKm + $calculPointsByYear;
             $entityManager->persist($materials);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_show', [
-                "materials" => $materials,
-                "calculPoints" => $calculPoints,
-            ]);
+            return $this->redirectToRoute('profile');
         }
 
         return $this->render('user/_addMaterial.html.twig', [
             'materials' => $materials,
             'form' => $form->createView(),
-            
         ]);
     }
 
