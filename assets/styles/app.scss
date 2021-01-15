@@ -21,6 +21,12 @@ body {
     display: none;
 }
 
+.profil_container{
+    background-color: #34445b;
+    height: 50%;
+    margin-top: 10rem;
+}
+
 .logo {
     margin: 2rem auto 4rem auto;
     text-align: center;
@@ -143,3 +149,27 @@ select option{
     height: 30rem;
     margin-left: 5rem;
 }
+
+//profile
+
+.pseudo{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.points-table {
+    width: 90%;
+    font-size: 2.5rem;
+    border-collapse: collapse;
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+  }
+  
+.points-table td, .points_table th {
+    border-width: 1px;
+    border: white;
+    border-color: white;
+    border-style: solid;
+    padding: 1rem;
+  }

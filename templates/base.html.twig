@@ -12,6 +12,13 @@
 <body>
 
 {% block body %}{% endblock %}
+<a class="profil_container">
+{% if app.user %}
+        <a href="{{ path('profile') }}">Mon profil</a>    
+    {% else %}
+        <a href="{{ path('home') }}">Acceuil</a>
+{% endif %}
+</a>
 
 
 {% block javascripts %}

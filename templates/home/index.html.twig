@@ -14,7 +14,8 @@
             <a href="{{ path('app_logout') }}">Se déconnecter</a>
     {% else %}
         <a href="{{ path('app_login') }}">Se connecter</a>
+        <a class="register" href="{{path ('app_register') }}">Pas encore inscrit? Cliquez ici.</a>
     {% endif %}
-    <a class="register" href="{{path ('app_register') }}">Pas encore inscrit? Cliquez ici.</a>
+    
 
 {% endblock %}
