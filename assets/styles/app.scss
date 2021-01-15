@@ -173,3 +173,12 @@ select option{
     border-style: solid;
     padding: 1rem;
   }
+
+
+#materials > div{
+    color: white;
+    display: grid;
+    justify-content: center;
+    margin-bottom: 2.5%;
+    row-gap: 1rem;
+}
