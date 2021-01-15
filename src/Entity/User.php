@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,9 +46,14 @@ class User implements UserInterface
     private ?string $pseudo;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Materials::class, inversedBy="Owner")
+     * @ORM\OneToMany(targetEntity=Materials::class, mappedBy="Owner")
      */
-    private ?Materials $materials;
+    private Collection $materials;
+
+    public function __construct()
+    {
+        $this->materials = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -142,14 +149,32 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getMaterials(): ?Materials
+    /**
+     * @return Collection|Materials[]
+     */
+    public function getMaterials(): Collection
     {
         return $this->materials;
     }
 
-    public function setMaterials(?Materials $materials): self
+    public function addMaterial(Materials $material): self
     {
-        $this->materials = $materials;
+        if (!$this->materials->contains($material)) {
+            $this->materials[] = $material;
+            $material->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMaterial(Materials $material): self
+    {
+        if ($this->materials->removeElement($material)) {
+            // set the owning side to null (unless already changed)
+            if ($material->getOwner() === $this) {
+                $material->setOwner(null);
+            }
+        }
 
         return $this;
     }

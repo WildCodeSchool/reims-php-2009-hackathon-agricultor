@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Materials;
 use App\Form\MaterialsType;
 use App\Repository\MaterialsRepository;
+use App\Service\CalculService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,22 +29,23 @@ class MaterialsController extends AbstractController
     /**
      * @Route("/new", name="materials_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CalculService $calculService): Response
     {
-        $material = new Materials();
-        $form = $this->createForm(MaterialsType::class, $material);
+        $materials = new Materials();
+        $form = $this->createForm(MaterialsType::class, $materials);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($material);
+            $materials->setOwner($this->getUser());
+            $entityManager->persist($materials);
             $entityManager->flush();
 
-            return $this->redirectToRoute('materials_index');
+            return $this->redirectToRoute('profile');
         }
 
-        return $this->render('materials/new.html.twig', [
-            'material' => $material,
+        return $this->render('user/_addMaterial.html.twig', [
+            'materials' => $materials,
             'form' => $form->createView(),
         ]);
     }

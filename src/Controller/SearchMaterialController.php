@@ -32,13 +32,14 @@ class SearchMaterialController extends AbstractController
             $trademark = $materials->getTrademark() ?? '';
             $model = $materials->getModel() ?? '';
             $year = $materials->getYear();
-            $km = $materials->getKilometer();
-
+            $kilometer = $materials->getKilometer();
+            
             $materials = $materialsRepository->search($type, $trademark, $model, $year);
 
             $calculPointsByYear = $calculService->calculPointsByYear($year);
-            $calculPointsByKm = $calculService->calculPointsByKm($km);
+            $calculPointsByKm = $calculService->calculPointsByKm($kilometer);
             $calculPoints = $calculPointsByKm + $calculPointsByYear;
+            
         }
 
         return $this->render('search_material/index.html.twig', [
